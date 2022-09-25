@@ -43,10 +43,10 @@ namespace BizHawk.Client.EmuHawk
 					var code = l.ToUpper();
 					var decoder = new GameSharkDecoder(MemoryDomains, Emulator.SystemId);
 					var result = decoder.Decode(code);
-					var domain = decoder.CheatDomain();
 
 					if (result.IsValid(out var valid))
 					{
+						var domain = decoder.CheatDomain(valid);
 						var description = !string.IsNullOrWhiteSpace(txtDescription.Text)
 							? txtDescription.Text
 							: code;

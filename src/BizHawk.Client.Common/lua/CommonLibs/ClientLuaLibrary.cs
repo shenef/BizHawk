@@ -404,7 +404,7 @@ namespace BizHawk.Client.Common
 			
 			if (result.IsValid(out var valid))
 			{
-				var domain = decoder.CheatDomain();
+				var domain = decoder.CheatDomain(valid);
 				MainForm.CheatList.Add(valid.ToCheat(domain, code));
 			}
 			else
