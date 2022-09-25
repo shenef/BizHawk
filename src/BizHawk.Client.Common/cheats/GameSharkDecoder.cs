@@ -38,6 +38,7 @@ namespace BizHawk.Client.Common.cheats
 
 		private string CheatDomainName(DecodeResult valid) => _systemId switch
 		{
+			VSystemID.Raw.GEN => valid.Address < 0x400000 ? "MD CART" : null,
 			VSystemID.Raw.N64 => "RDRAM",
 			VSystemID.Raw.PSX => "MainRAM",
 #if false
