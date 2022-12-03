@@ -250,9 +250,9 @@ namespace BizHawk.Client.Common
 			var iSrc = Math.Min(Math.Max(0L, addr), d.Size);
 			var iDst = iSrc - addr;
 			var bytes = new byte[length];
-			using (d.EnterExit())
+			if (iSrc < indexAfterLast)
 			{
-				while (iSrc < indexAfterLast) bytes[iDst++] = d.PeekByte(iSrc++);
+				d.BulkPeekByte((ulong) iSrc, bytes.AsSpan().Slice(start: (int) iDst, length: (int) iSrc.RangeToExclusive(indexAfterLast).Count()));
 			}
 			if (lastReqAddr >= d.Size) LogCallback($"Warning: Attempted reads on addresses {d.Size}..{lastReqAddr} outside range of domain {d.Name} in {nameof(ReadByteRange)}()");
 			return bytes;
