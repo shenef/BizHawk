@@ -110,7 +110,7 @@ namespace BizHawk.Client.EmuHawk
 					{
 						if (_addressMangler == 0)
 						{
-							_domain.BulkPeekByte(0, new((void*)buffer, length));
+							_domain.BulkPeekByte((ulong)addr, new((void*)buffer, length));
 						}
 						else
 						{
